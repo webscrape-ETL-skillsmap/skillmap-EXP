@@ -1,0 +1,25 @@
+name: Deploy to AWS Lambda
+
+on:
+  push:
+    branches:
+      - main  # Trigger the workflow when code is pushed to the main branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2  # This step checks out your code into the GitHub Actions runner
+
+      # Add steps to build your code here if necessary
+
+      - name: Deploy to AWS Lambda
+        uses: appleboy/lambda-action@v0.0.2  # Use a pre-built GitHub Action for deploying to Lambda
+        with:
+          aws_access_key_id: ${{ secrets.AWS_ACCESS.AWS_ACCESS_KEY_ID }}  
+          aws_secret_access_key: ${{ secrets.AWS_ACCESS.AWS_SECRET_ACCESS_KEY }}  
+          region: eu-west-2  
+          function_name: GHActionTest  
+          zip_file: src/etl-lambda/extract_transform_lambda  # Specify the path to the ZIP file or directory containing your Lambda function code
