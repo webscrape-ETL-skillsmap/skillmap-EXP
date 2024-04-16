@@ -13,22 +13,22 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2  # This step checks out your code into the GitHub Actions runner
 
-      # - name: Create Zip
-      #   run: |
-      #     if [ -f function.zip ]; then
-      #       rm function.zip
-      #     fi
-      #     zip -r function.zip src/etl-lambda/extract_transform_lambda/*
-
       - name: Create Zip
         run: |
-          cd src/etl-lambda/extract_transform_lambda
-          ls -l   # List the files in the current directory for debugging
-          pwd     # Print the current directory for debugging
           if [ -f function.zip ]; then
             rm function.zip
           fi
-          zip -r function.zip * -x "*/\.*"
+          zip -r function.zip src/etl-lambda/extract_transform_lambda/*
+
+      # - name: Create Zip
+      #   run: |
+      #     cd src/etl-lambda/extract_transform_lambda
+      #     ls -l   # List the files in the current directory for debugging
+      #     pwd     # Print the current directory for debugging
+      #     if [ -f function.zip ]; then
+      #       rm function.zip
+      #     fi
+      #     zip -r function.zip * -x "*/\.*"
 
 
                           
