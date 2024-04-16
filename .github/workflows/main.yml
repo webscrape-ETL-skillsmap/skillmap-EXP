@@ -18,14 +18,16 @@ jobs:
       #     if [ -f function.zip ]; then
       #       rm function.zip
       #     fi
-      #     zip -r function.zip src/etl-lambda/extract_transform_lambda
+      #     zip -r function.zip src/etl-lambda/extract_transform_lambda/*
 
       - name: Create Zip
         run: |
+          cd src/etl-lambda/extract_transform_lambda
           if [ -f function.zip ]; then
             rm function.zip
           fi
-          zip -r function.zip src/etl-lambda/extract_transform_lambda/*
+          zip -r function.zip .
+
 
 
                           
