@@ -25,8 +25,8 @@ jobs:
           if [ -f function.zip ]; then
             rm function.zip
           fi
-          cd src/etl-lambda/extract_transform_lambda
-          zip -r ../../function.zip .
+          zip -r function.zip src/etl-lambda/extract_transform_lambda/*
+
 
                           
       - name: Deploy to AWS Lambda
