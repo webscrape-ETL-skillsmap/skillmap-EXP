@@ -13,12 +13,21 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2  # This step checks out your code into the GitHub Actions runner
 
+      # - name: Create Zip
+      #   run: |
+      #     if [ -f function.zip ]; then
+      #       rm function.zip
+      #     fi
+      #     zip -r function.zip src/etl-lambda/extract_transform_lambda
+
       - name: Create Zip
         run: |
           if [ -f function.zip ]; then
             rm function.zip
           fi
-          zip -r function.zip src/etl-lambda/extract_transform_lambda
+          cd src/etl-lambda/extract_transform_lambda
+          zip -r ../../function.zip .
+
                           
       - name: Deploy to AWS Lambda
         uses: appleboy/lambda-action@v0.0.2  # Use a pre-built GitHub Action for deploying to Lambda
