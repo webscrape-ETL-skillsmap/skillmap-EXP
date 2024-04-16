@@ -23,12 +23,12 @@ jobs:
       - name: Create Zip
         run: |
           cd src/etl-lambda/extract_transform_lambda
+          ls -l   # List the files in the current directory for debugging
+          pwd     # Print the current directory for debugging
           if [ -f function.zip ]; then
             rm function.zip
           fi
           zip -r function.zip .
-
-
 
                           
       - name: Deploy to AWS Lambda
